@@ -8,7 +8,14 @@ enum ExpenseFormStatus {
 }
 
 final class ExpenseFormState extends Equatable {
-  const ExpenseFormState({});
+  const ExpenseFormState({
+    this.title,
+    this.amount,
+    this.date,
+    this.category = Category.other,
+    this.status = ExpenseFormStatus.initial,
+  });
+
   final String? title;
   final double? amount;
   final DateTime date;
