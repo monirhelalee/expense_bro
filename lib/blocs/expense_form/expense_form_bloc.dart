@@ -17,6 +17,7 @@ class ExpenseFormBloc extends Bloc<ExpenseFormEvent, ExpenseFormState> {
     on<ExpenseAmountChanged>(_onAmountChanged);
     on<ExpenseDateChanged>(_onDateChanged);
     on<ExpenseCategoryChanged>(_onCategoryChanged);
+    on<ExpenseSubmitted>(_onSubmitted);
   }
 
   final ExpenseRepository _repository;

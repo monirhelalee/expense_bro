@@ -11,29 +11,29 @@ class AddExpensesSheetWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: MediaQuery.viewInsetsOf(context),
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: const SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const TitleFieldWidget(),
-            const SizedBox(
+            TitleFieldWidget(),
+            SizedBox(
               height: 16,
             ),
-            const AmountFieldWidget(),
-            const SizedBox(
+            AmountFieldWidget(),
+            SizedBox(
               height: 16,
             ),
-            const DateFieldWidget(),
-            const SizedBox(
+            DateFieldWidget(),
+            SizedBox(
               height: 24,
             ),
             CategoryChoicesWidget(),
-            const SizedBox(
+            SizedBox(
               height: 30,
             ),
             AddButtonWidget(),
-            const SizedBox(
+            SizedBox(
               height: 30,
             ),
           ],
@@ -100,9 +100,9 @@ class CategoryChoicesWidget extends StatelessWidget {
               .map((currentCategory) => ChoiceChip(
                     label: Text(currentCategory.toName),
                     selected: currentCategory == state.category,
-                    onSelected: (_) {
-                      ExpenseCategoryChanged(currentCategory);
-                    },
+                    onSelected: (_) => bloc.add(
+                      ExpenseCategoryChanged(currentCategory),
+                    ),
                   ))
               .toList(),
         ),
