@@ -1,17 +1,12 @@
 part of 'expense_form_bloc.dart';
 
-enum ExpenseFormStatus {
-  initial,
-  loading,
-  success,
-  failure,
-}
+enum ExpenseFormStatus { initial, loading, success, failure }
 
 final class ExpenseFormState extends Equatable {
   const ExpenseFormState({
     this.title,
     this.amount,
-    this.date,
+    required this.date,
     this.category = Category.other,
     this.status = ExpenseFormStatus.initial,
   });
@@ -22,6 +17,24 @@ final class ExpenseFormState extends Equatable {
   final Category category;
   final ExpenseFormStatus status;
 
+  ExpenseFormState copyWith({
+    String? title,
+    double? amount,
+    DateTime? date,
+    Category? category,
+    ExpenseFormStatus? status,
+  }) {
+    return ExpenseFormState(
+      title: title ?? this.title,
+      amount: amount ?? this.amount,
+      date: date ?? this.date,
+      category: category ?? this.category,
+      status: status ?? this.status,
+    );
+  }
+
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [title, amount, date, category, status];
+
+  bool get isFormValid => title != null && amount != null;
 }
