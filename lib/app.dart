@@ -1,3 +1,4 @@
+import 'package:expense_bro/blocs/expense_list/expense_list_bloc.dart';
 import 'package:expense_bro/pages/home_page.dart';
 import 'package:expense_bro/repositories/expense_repository.dart';
 import 'package:flutter/material.dart';
@@ -12,9 +13,15 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return RepositoryProvider.value(
       value: expenseRepository,
-      child: const MaterialApp(
-        home: HomePage(),
-        debugShowCheckedModeBanner: false,
+      child: BlocProvider(
+        create: (context) => ExpenseListBloc(
+          repository: expenseRepository,
+        )..add(const ExpenseListSubscriptionRequested()),
+        child: const MaterialApp(
+          home: HomePage(),
+          //theme: AppTheme.theme,
+          debugShowCheckedModeBanner: false,
+        ),
       ),
     );
   }

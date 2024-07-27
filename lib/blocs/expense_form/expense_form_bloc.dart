@@ -11,8 +11,15 @@ part 'expense_form_state.dart';
 class ExpenseFormBloc extends Bloc<ExpenseFormEvent, ExpenseFormState> {
   ExpenseFormBloc({
     required ExpenseRepository repository,
+    Expense? initialExpense,
   })  : _repository = repository,
-        super(ExpenseFormState(date: DateTime.now())) {
+        super(ExpenseFormState(
+          initialExpense: initialExpense,
+          title: initialExpense?.title,
+          amount: initialExpense?.amount,
+          date: initialExpense?.date ?? DateTime.now(),
+          category: initialExpense?.category ?? Category.other,
+        )) {
     on<ExpenseTitleChanged>(_onTitleChanged);
     on<ExpenseAmountChanged>(_onAmountChanged);
     on<ExpenseDateChanged>(_onDateChanged);
@@ -55,13 +62,19 @@ class ExpenseFormBloc extends Bloc<ExpenseFormEvent, ExpenseFormState> {
     ExpenseSubmitted event,
     Emitter<ExpenseFormState> emit,
   ) async {
-    final expense = Expense(
-      id: const Uuid().v4(),
-      title: state.title!,
-      amount: state.amount!,
-      date: state.date,
-      category: state.category,
-    );
+    final expense = (state.initialExpense)?.copyWith(
+          title: state.title,
+          amount: state.amount,
+          date: state.date,
+          category: state.category,
+        ) ??
+        Expense(
+          id: const Uuid().v4(),
+          title: state.title!,
+          amount: state.amount!,
+          date: state.date,
+          category: state.category,
+        );
 
     emit(state.copyWith(status: ExpenseFormStatus.loading));
 

@@ -29,7 +29,7 @@ class Expense extends Equatable {
     return Expense(
       id: json['id'],
       title: json['title'],
-      amount: double.tryParse(json['amount']) ?? 0.0,
+      amount: json['amount'] ?? 0.0,
       date: DateTime.fromMillisecondsSinceEpoch(json['date']),
       category: Category.fromJson(json['category']),
     );

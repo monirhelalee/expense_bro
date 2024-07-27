@@ -9,6 +9,7 @@ final class ExpenseFormState extends Equatable {
     required this.date,
     this.category = Category.other,
     this.status = ExpenseFormStatus.initial,
+    this.initialExpense,
   });
 
   final String? title;
@@ -16,6 +17,7 @@ final class ExpenseFormState extends Equatable {
   final DateTime date;
   final Category category;
   final ExpenseFormStatus status;
+  final Expense? initialExpense;
 
   ExpenseFormState copyWith({
     String? title,
@@ -23,6 +25,7 @@ final class ExpenseFormState extends Equatable {
     DateTime? date,
     Category? category,
     ExpenseFormStatus? status,
+    Expense? initialExpense,
   }) {
     return ExpenseFormState(
       title: title ?? this.title,
@@ -30,11 +33,19 @@ final class ExpenseFormState extends Equatable {
       date: date ?? this.date,
       category: category ?? this.category,
       status: status ?? this.status,
+      initialExpense: initialExpense ?? this.initialExpense,
     );
   }
 
   @override
-  List<Object?> get props => [title, amount, date, category, status];
+  List<Object?> get props => [
+        title,
+        amount,
+        date,
+        category,
+        status,
+        initialExpense,
+      ];
 
-  bool get isFormValid => title != null && amount != null;
+  bool get isFormValid => title != null && amount != null && amount! > 0;
 }

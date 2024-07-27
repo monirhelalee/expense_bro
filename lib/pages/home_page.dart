@@ -1,4 +1,6 @@
-import 'package:expense_bro/extensions/appx.dart';
+import 'package:expense_bro/extensions/extensions.dart';
+import 'package:expense_bro/widgets/expenses_widget.dart';
+import 'package:expense_bro/widgets/total_expenses_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -14,7 +16,7 @@ class HomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            //TotalExpensesWidget(),
+            TotalExpensesWidget(),
             SizedBox(
               height: 14,
             ),
@@ -22,7 +24,7 @@ class HomePage extends StatelessWidget {
             SizedBox(
               height: 14,
             ),
-            //ExpensesWidget(),
+            ExpensesWidget(),
           ],
         ),
       ),
