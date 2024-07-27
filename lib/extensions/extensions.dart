@@ -11,6 +11,7 @@ extension AppX on BuildContext {
   }) {
     return showModalBottomSheet(
       context: this,
+      barrierColor: Theme.of(this).colorScheme.onSurface.withOpacity(0.2),
       builder: (context) => BlocProvider(
         create: (context) => ExpenseFormBloc(
           initialExpense: expense,

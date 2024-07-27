@@ -1,6 +1,7 @@
 import 'package:expense_bro/blocs/expense_list/expense_list_bloc.dart';
 import 'package:expense_bro/pages/home_page.dart';
 import 'package:expense_bro/repositories/expense_repository.dart';
+import 'package:expense_bro/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,9 +18,9 @@ class App extends StatelessWidget {
         create: (context) => ExpenseListBloc(
           repository: expenseRepository,
         )..add(const ExpenseListSubscriptionRequested()),
-        child: const MaterialApp(
-          home: HomePage(),
-          //theme: AppTheme.theme,
+        child: MaterialApp(
+          home: const HomePage(),
+          theme: AppTheme.theme,
           debugShowCheckedModeBanner: false,
         ),
       ),
