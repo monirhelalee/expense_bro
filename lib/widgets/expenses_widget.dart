@@ -18,7 +18,7 @@ class ExpensesWidget extends StatelessWidget {
           );
         }
 
-        final expenses = state.expenses.toList();
+        final expenses = state.filteredExpenses.toList();
 
         if (state.status == ExpenseListStatus.success && expenses.isEmpty) {
           return const Center(

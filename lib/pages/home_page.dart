@@ -1,4 +1,5 @@
 import 'package:expense_bro/extensions/extensions.dart';
+import 'package:expense_bro/widgets/expense_filter_widget.dart';
 import 'package:expense_bro/widgets/expenses_widget.dart';
 import 'package:expense_bro/widgets/total_expenses_widget.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Hello, Good Morning'),
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -20,7 +21,7 @@ class HomePage extends StatelessWidget {
             SizedBox(
               height: 14,
             ),
-            //ExpenseFilterWidget(),
+            ExpenseFilterWidget(),
             SizedBox(
               height: 14,
             ),
